@@ -58,3 +58,23 @@ class GildedRose {
             items[i].quality--;
         }
     }
+
+    private void lowerSellIn(Item item) {
+        items[i].sellIn--;
+    }
+        
+    private void increaseQuality(Item item) {
+        if (items[i].quality < 50) {
+            items[i].quality++;
+        }
+    }
+
+    private void lowerQuality(Item item) {
+        if (items[i].quality > 0) {
+            items[i].quality--;
+        }
+    }
+
+    private void setQuality(Item item, int quality) {
+        items[i].quality = quality;
+    }
