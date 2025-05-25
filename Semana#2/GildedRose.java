@@ -2,6 +2,8 @@ package com.gildedrose;
 
 class GildedRose {
     private Item[] items;
+    private static final int MAX_QUALITY = 50;
+    private static final int MIN_QUALITY = 0;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -25,56 +27,58 @@ class GildedRose {
     }
 
     private void updateAgedBrie(Item item) {
-        if (items[i].quality < 50) {
-            items[i].quality++;
+        lowerSellIn(item);
+        if (item.getItemQuality() < MAX_QUALITY) {
+            increaseQuality(item);
         }
-        if (items[i].sellIn < 0 && items[i].quality < 50) {
-            items[i].quality++;
+        if (item.getItemSellIn() < MIN_QUALITY) {
+            increaseQuality(item);
         }
     }
 
-    private void updateBackstagePass(Item item) {
-        if (items[i].sellIn < 0) {
-            items[i].quality = 0;
+    private void updateBackstagePasses(Item item) {
+        lowerSellIn(item);
+        if (item.getItemSellIn() < MIN_QUALITY) {
+            setItemQuality(item, 0);
             return;
-        } else {
-            if (items[i].quality < 50) {
-                items[i].quality++;
+        } 
+        if (item.getItemQuality() < MAX_QUALITY) {
+            increaseQuality(item);
+            if (item.getItemSellIn() < 10) {
+                increaseQuality(item);
             }
-            if (items[i].sellIn < 11 && items[i].quality < 50) {
-                items[i].quality++;
-             }
-            if (items[i].sellIn < 6 && items[i].quality < 50) {
-                items[i].quality++;
+            if (item.getItemSellIn() < 5) {
+                increaseQuality(item);
             }
         }
     }
 
     private void updateNormalItem(Item item) {
-        if (items[i].quality > 0) {
-            items[i].quality--;
+        lowerSellIn(item);
+        if (item.getItemQuality() > MIN_QUALITY) {
+            decreaseQuality(item);
         }
-        if (items[i].sellIn < 0 && items[i].quality > 0) {
-            items[i].quality--;
+        if (item.getItemSellIn() < MIN_QUALITY) {
+            decreaseQuality(item);
         }
     }
 
     private void lowerSellIn(Item item) {
-        items[i].sellIn--;
+        item.setItemSellIn(item.getItemSellIn() - 1);
     }
         
     private void increaseQuality(Item item) {
-        if (items[i].quality < 50) {
-            items[i].quality++;
+        if (item.getItemQuality() < MAX_QUALITY) {
+            item.setItemQuality(item.getItemQuality() + 1);
         }
     }
 
-    private void lowerQuality(Item item) {
-        if (items[i].quality > 0) {
-            items[i].quality--;
+    private void decreaseQuality(Item item) {
+        if (item.getItemQuality() > MIN_QUALITY) {
+            item.setItemQuality(item.getItemQuality() - 1);
         }
     }
 
-    private void setQuality(Item item, int quality) {
-        items[i].quality = quality;
+    private void setItemQuality(Item item, int qualityValue) {
+        item.setItemQuality(qualityValue);
     }

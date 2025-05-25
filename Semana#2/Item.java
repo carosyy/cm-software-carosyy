@@ -8,8 +8,8 @@ public class Item {
 
     public Item(String itemName, int itemSellIn, int itemQuality) {
         setItemName(itemName);
-        setSellIn(itemSellIn);
-        setQuality(itemQuality);
+        setItemSellIn(itemSellIn);
+        setItemQuality(itemQuality);
     }
 
     public String getItemName() {
@@ -27,15 +27,15 @@ public class Item {
         return itemSellIn;
     }
 
-    public void setSellIn(int itemSellIn) {
+    public void setItemSellIn(int itemSellIn) {
         this.itemSellIn = itemSellIn;
     }
 
-    public int getitemQuality() {
+    public int getItemQuality() {
         return itemQuality;
     }
 
-    public void setQuality(int itemQuality) {
+    public void setItemQuality(int itemQuality) {
         if (itemQuality < 0 || itemQuality > 50) {
             throw new IllegalArgumentException("Quality must be between 0 and 50. Please enter a valid quality.");
         }
