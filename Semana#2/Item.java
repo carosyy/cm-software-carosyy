@@ -6,10 +6,10 @@ public class Item {
     private int itemSellIn;
     private int itemQuality;
 
-    public Item(String name, int sellIn, int quality) {
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
+    public Item(String itemName, int itemSellIn, int itemQuality) {
+        setItemName(itemName);
+        setSellIn(itemSellIn);
+        setQuality(itemQuality);
     }
 
     public String getItemName() {
@@ -45,6 +45,6 @@ public class Item {
 
    @Override
    public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+        return "GildedRose: \n Item name: " + this.itemName + "\n Sell in:" + this.itemSellIn + "\n Quality:" + this.itemQuality;
     }
 }
